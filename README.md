@@ -1,7 +1,7 @@
 # Obtain Point clouds from Uniform Line Clouds
 
 
-Reference code for our [CVPR 2021 paper](https://arxiv.org/abs/2103.05086?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%253A+arxiv%252FQSXk+%2528ExcitingAds%2521+cs+updates+on+arXiv.org%2529). 
+Reference code for our CVPR 2021 [[paper]](https://arxiv.org/abs/2103.05086?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%253A+arxiv%252FQSXk+%2528ExcitingAds%2521+cs+updates+on+arXiv.org%2529) titled "How privacy preserving are Line Clouds? Recovering Scene Details from 3D Lines". 
 
 
 If you use this code/model for your research, please cite the following paper:
