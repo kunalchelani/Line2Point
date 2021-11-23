@@ -3,6 +3,7 @@
 
 Reference code for our CVPR 2021 [[paper]](https://openaccess.thecvf.com/content/CVPR2021/html/Chelani_How_Privacy-Preserving_Are_Line_Clouds_Recovering_Scene_Details_From_3D_CVPR_2021_paper.html) titled "How privacy preserving are Line Clouds? Recovering Scene Details from 3D Lines". 
 
+[[Link]](https://youtu.be/PdwGHHizKXM) to presentation video.
 
 If you use this code/model for your research, please cite the following paper:
 ```
