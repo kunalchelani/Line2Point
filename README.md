@@ -1,18 +1,19 @@
 # Obtain Point clouds from Uniform Line Clouds
 
 
-Reference code for our [CVPR 2021 paper](https://arxiv.org/abs/2103.05086?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%253A+arxiv%252FQSXk+%2528ExcitingAds%2521+cs+updates+on+arXiv.org%2529). 
+Reference code for our CVPR 2021 [[paper]](https://openaccess.thecvf.com/content/CVPR2021/html/Chelani_How_Privacy-Preserving_Are_Line_Clouds_Recovering_Scene_Details_From_3D_CVPR_2021_paper.html) titled "How privacy preserving are Line Clouds? Recovering Scene Details from 3D Lines". 
 
+[[Link]](https://youtu.be/PdwGHHizKXM) to presentation video.
 
 If you use this code/model for your research, please cite the following paper:
 ```
-@misc{chelani2021privacypreserving,
-      title={How Privacy-Preserving are Line Clouds? Recovering Scene Details from 3D Lines}, 
-      author={Kunal Chelani and Fredrik Kahl and Torsten Sattler},
-      year={2021},
-      eprint={2103.05086},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Chelani_2021_CVPR,
+    author    = {Chelani, Kunal and Kahl, Fredrik and Sattler, Torsten},
+    title     = {How Privacy-Preserving Are Line Clouds? Recovering Scene Details From 3D Lines},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2021},
+    pages     = {15668-15678}
 }
 ```
 ## Results
