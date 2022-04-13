@@ -68,7 +68,7 @@ def calc_estimate_from_line(pt_est, line_est, pt_use, line_use):
     n2 = np.cross(n, line_use)
     n2 /= np.linalg.norm(n2) + 10e-7
 
-    est = np.dot((pt_est  - pt_use),n2)/(np.dot(line_est, n2) + 10e-7)
+    est = np.dot((pt_use - pt_est),n2)/(np.dot(line_est, n2) + 10e-7)
     return est
 
 def estimate_all_pts(pts, lines, nns):
