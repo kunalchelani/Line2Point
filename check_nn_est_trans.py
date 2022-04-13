@@ -23,11 +23,24 @@ def calc_estimate_from_line(pt_est, line_est, pt_use, line_use):
     est = np.dot((pt_est  - pt_use),n2)/(np.dot(line_est, n2) + 10e-7)
     return est
 
+def calc_estimate_from_line_rectified(pt_est, line_est, pt_use, line_use):
+    
+    n = np.cross(line_est, line_use)
+    n /= np.linalg.norm(n) + 10e-7
+
+    n2 = np.cross(n, line_use)
+    n2 /= np.linalg.norm(n2) + 10e-7
+
+    est = np.dot((pt_use -pt_est),n2)/(np.dot(line_est, n2) + 10e-7)
+    return est
 
 def calc_estimates_from_lines(pt, line, neigh_pts, neigh_lines):
     ests = []
     for i in range(neigh_lines.shape[0]):
-        est = calc_estimate_from_line(pt, line, neigh_pts[i, :], neigh_lines[i, :])
+        if rev is False:
+            est = calc_estimate_from_line(pt, line, neigh_pts[i, :], neigh_lines[i, :])
+        if rev is True:
+            est = calc_estimate_from_line_rectified(pt, line, neigh_pts[i, :], neigh_lines[i, :])
         ests.append(est)
 
     return ests
@@ -108,14 +121,22 @@ print("Calculating line neighbours")
 for i in range(num_pts):
     nn_l2l[i] = get_n_closest_lines_from_line(pts[i], lines[i], pts, lines, num_nn_l2l)
 
-sort_nn_org=np.sort(get_n_closest_lines_from_line(pts[0], lines[0], pts, lines, num_nn_l2l))
-sort_nn_trans=np.sort(get_n_closest_lines_from_line(pts[0]+np.multiply(lines[0],20), lines[0], pts, lines, num_nn_l2l))
-print('NN correspondense check :',np.equal(sort_nn_trans,sort_nn_org).all())
+for i in range(2):
+    if i==0:
+        rev = False
+        print('Before revised')
+    else:
+        rev =  True
+        print('After revised')
+    sort_nn_org=np.sort(get_n_closest_lines_from_line(pts[0], lines[0], pts, lines, num_nn_l2l))
+    sort_nn_trans=np.sort(get_n_closest_lines_from_line(pts[0]+np.multiply(lines[0],20), lines[0], pts, lines, num_nn_l2l))
+    print('NN correspondense check :',np.equal(sort_nn_trans,sort_nn_org).all())
 
-pt0_org_est,_ = get_peak(np.array(calc_estimates_from_lines(pts[0], lines[0], pts[nn_l2l[0]], lines[nn_l2l[0]])))
-pt0_trans_est,_ = get_peak(np.array(calc_estimates_from_lines(pts[0]+np.multiply(lines[0],10), lines[0], pts[nn_l2l[0]], lines[nn_l2l[0]])))
+    pt0_org_est,_ = get_peak(np.array(calc_estimates_from_lines(pts[0], lines[0], pts[nn_l2l[0]], lines[nn_l2l[0]])))
+    pt0_trans_est,_ = get_peak(np.array(calc_estimates_from_lines(pts[0]+np.multiply(lines[0],10), lines[0], pts[nn_l2l[0]], lines[nn_l2l[0]])))
 
-print('pts :',pts[0])
-print('pts_est :',pts[0]+np.multiply(pt0_org_est,lines[0]))
-print('pst_translated :',pts[0]+np.multiply(lines[0],10))
-print('pts_trans_est :',pts[0]+np.multiply(lines[0],10)+np.multiply(pt0_trans_est,lines[0]))
+    print('pts :',pts[0])
+    print('pts_est :',pts[0]+np.multiply(pt0_org_est,lines[0]))
+    print('pst_translated :',pts[0]+np.multiply(lines[0],10))
+    print('pts_trans_est :',pts[0]+np.multiply(lines[0],10)+np.multiply(pt0_trans_est,lines[0]))
+    print('#'*30)
