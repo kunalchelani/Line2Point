@@ -11,9 +11,9 @@ def get_n_closest_lines_from_line(pt, line, pts, lines, num_nn):
     n /= np.linalg.norm(n, axis = 1, keepdims = True) + 10e-7
 
     dist = np.abs(np.sum(np.multiply(pts - pt, n), axis = 1))
-    ii_nn = np.argpartition(dist, num_nn)
+    ii_nn = np.argpartition(dist, (0,num_nn+1))
 
-    return ii_nn[0:num_nn]
+    return ii_nn[1:num_nn+1]
 
 def get_n_closest_points_from_line(pt, line, pts, num_nn):
 
@@ -24,9 +24,9 @@ def get_n_closest_points_from_line(pt, line, pts, num_nn):
     n1 /= np.linalg.norm(n1, axis = 1, keepdims = True) + 10e-7
 
     dist = np.abs(np.sum(np.multiply(pts - pt, n1), axis = 1))
-    ii_nn = np.argpartition(dist, num_nn)
+    ii_nn = np.argpartition(dist, (0,num_nn+1))
 
-    return ii_nn[0:num_nn]
+    return ii_nn[1:num_nn+1]
 
 def get_n_closest_lines_from_point(pt, pts, lines, num_nn):
 
@@ -37,9 +37,9 @@ def get_n_closest_lines_from_point(pt, pts, lines, num_nn):
     n1 /= np.linalg.norm(n1, axis = 1, keepdims = True) + 10e-7
 
     dist = np.abs(np.sum(np.multiply(pts - pt, n1), axis = 1))
-    ii_nn = np.argpartition(dist, num_nn)
+    ii_nn = np.argpartition(dist, (0,num_nn+1))
 
-    return ii_nn[0:num_nn]
+    return ii_nn[1:num_nn+1]
 
 def calc_line_line_dist(p1, l1, p2, l2):
     n = np.cross(l1, l2)
