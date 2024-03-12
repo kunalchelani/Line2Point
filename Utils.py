@@ -203,6 +203,24 @@ def write_colmap_points(points_fname_out, points, estimates, if_use_pt, id_to_in
 
                 fid.write("\n")
 
+def load_points_and_setup_from_ply(input_ply_fname, use_fraction):
+    
+    # load points from ply using open3d
+    pcd = o3d.io.read_point_cloud(input_ply_fname)
+    pts = np.asarray(pcd.points)
+    
+    num_pts = pts.shape[0]
+    num_pts_sample = int(use_fraction * num_pts)
+    
+    sel_inds = random.sample(range(num_pts), k = num_pts_sample)
+    sel_pts = pts[sel_inds, :]
+    
+    lines = np.random.randn(num_pts_sample, 3)
+    lines /= np.linalg.norm(lines, axis = 1, keepdims = True)
+    
+    return sel_pts, lines
+    
+
 def write_colmap_images(images_fname_out, images_fname_in, if_use_pt):
 
     images = read_model.read_images_text(images_fname_in)
