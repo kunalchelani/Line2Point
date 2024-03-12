@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description='Code for recovering points from Li
 parser.add_argument("--input_type", type = str, default = "colmap", choices=["colmap", "ply"], help="If colmap is chosesn, arguments colmap_input_img_fname, colmap_input_pts_fname need to be provided as well", required=True)
 parser.add_argument("--colmap_input_img_fname", type = str, default = "demo/colmap/input/images.txt", required = False)
 parser.add_argument("--colmap_input_pts_fname", type = str, default = "demo/colmap/input/points3D.txt", required = False)
-parser.add_argument("--input_ply_fname", type = str, default = "demo/colmap/input.ply", required = False)
+parser.add_argument("--input_ply_fname", type = str, default = "demo/ply/input.ply", required = False)
 
 # Paramaters
 parser.add_argument("--use_fraction_pts", type=float, help="Float between 0 and 1 to choose a fraction of points from the input", required = True)
@@ -112,6 +112,13 @@ pts_est = pts + est_peak.reshape(-1,1) * lines
 
 ########### Write filtered output #############
 
+# Should make these user input.
+nn1 = 50
+std1 = 2.0
+
+nn2 = 25
+std2 = 2.0
+
 if(args.clean_output):
     num_pts = pts_est.shape[0]
     pc = o3d.geometry.PointCloud()
@@ -134,7 +141,7 @@ if(args.clean_output):
 
 ############ Ply ############
 
-    if(args.wrte_ply):
+    if(args.write_ply):
         o3d.io.write_point_cloud(args.output_ply_fname, pcd3)
 
 ############ Colmap ############
